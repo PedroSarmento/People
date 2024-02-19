@@ -1,4 +1,7 @@
-FROM ubuntu:latest
-LABEL authors="Pedro"
+FROM nginx:latest
 
-ENTRYPOINT ["top", "-b"]
+#COPY index.html /usr/share/nginx/html
+
+EXPOSE 80
+
+#/etc/nginx
