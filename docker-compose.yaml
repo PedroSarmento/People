@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: pedrohpsarmento/nginx
+    container_name: nginx
+    networks:
+      - local
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/index.html:/usr/share/nginx/html/index.html
+#      - ./nginx/nginx.conf:/etc/nginx/
+    restart: always
+
+  app:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    image: pedrohpsarmento/node
+    container_name: app
+    networks:
+      - local
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node:/usr/src/app
+    depends_on:
+      db:
+        condition: service_healthy
+    tty: true
+
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - local
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD" ]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+
+
+networks:
+  local:
+    driver: bridge
