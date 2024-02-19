@@ -9,14 +9,17 @@ const mysql_config = {
     database: "nodedb"
 };
 
-const insert_query = `INSERT INTO people(name) values('pedro')`
-
-const connection = mysql.createConnection(mysql_config)
-connection.query(insert_query)
-connection.end()
-
 app.get('/', (req,res) => {
-    res.send('<h1>Full Cycle 4</h1>')
+    const select_query = `SELECT * FROM people;`
+
+    var names = '';
+
+    const connection = mysql.createConnection(mysql_config)
+    connection.query(select_query, function (err, result, fields) {
+        result.map(value => names += "<p>" + value.name + "</p>")
+        res.send("<h1>Full Cycle Rocks!</h1><br>" + names)
+    });
+    connection.end()
 })
 
 app.listen(port, () => {
