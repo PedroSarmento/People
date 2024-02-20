@@ -1,7 +1,7 @@
 # Node.js + MySQL + Nginx
 
 ## Objetivo
-Este é um projeto criado como parte do Desafio Docker + Node.js + MySQL + Nginx do curso Full Cycle da Code Education.
+Este é um projeto criado como parte do Desafio Docker + Node.js + MySQL + Nginx
 
 ## Descrição
 O objetivo deste desafio é criar uma aplicação Node.js que se conecte a um banco de dados MySQL para armazenar nomes de forma aleatória. Essa aplicação será servida via Nginx.
