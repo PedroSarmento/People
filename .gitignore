@@ -1,5 +1,4 @@
 .idea
 mysql/data
 node/node_modules
-node/package.json
 node/package-lock.json
