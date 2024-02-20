@@ -11,10 +11,11 @@ services:
       - local
     ports:
       - "8080:80"
+    depends_on:
+      - app
     volumes:
-      - ./nginx/index.html:/usr/share/nginx/html/index.html
-#      - ./nginx/nginx.conf:/etc/nginx/
-    restart: always
+      - ./nginx:/etc/nginx/conf.d
+    command: /bin/sh -c "exec nginx -g 'daemon off;'"
 
   app:
     build:
@@ -24,8 +25,6 @@ services:
     container_name: app
     networks:
       - local
-    ports:
-      - "3000:3000"
     volumes:
       - ./node:/usr/src/app
     depends_on:
