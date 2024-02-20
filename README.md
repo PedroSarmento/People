@@ -4,7 +4,7 @@
 Este é um projeto criado como parte do Desafio Docker + Node.js + MySQL + Nginx
 
 ## Descrição
-O objetivo deste desafio é criar uma aplicação Node.js que se conecte a um banco de dados MySQL para armazenar nomes de forma aleatória. Essa aplicação será servida via Nginx.
+O objetivo deste desafio é criar uma aplicação Node.js que se conecte a um banco de dados MySQL para armazenar nomes de forma aleatória. O acesso dessa aplicação será via Nginx.
 
 ## Configuração
 Siga as instruções abaixo para configurar e executar o projeto localmente:
